@@ -1,0 +1,30 @@
+{% render 'partials/head.liquid', title: 'Qatar Museums' %}
+
+{% render 'partials/header.liquid' %}
+
+
+<main class="main-home">
+
+<ul class="art_images">
+    {% for artwork in api %}
+        <li>
+            <a href="/object/{{ artwork.id }}">
+                <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" alt="images of artwork in qatar " width="300px">        
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+<search class="zoeken">
+    <form class="form-search-collection">
+        <label>
+            <input type="search" placeholder="SEARCH THE COLLECTION">
+        </label>
+
+        <p class="button-search">
+            <button type="submit" class="search--keyword-button"></button>
+        </p>
+    </form>
+</search>
+
+</main>

@@ -17,11 +17,11 @@ app.set('views', './view') //Instellen van de map met de Liquid templates
 //GET routes
 app.get('/', async function (request, response) {
     const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
-    const apiResponseJSON = await apiResponse.json // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
-
-    resonse.render("index.liquid", {artwork: apiResponseJSON.data}) // in liquid refereer je naar de variable waarin de data opgeslagen staat. 
-})
-
+    const apiResponseJSON = await apiResponse.json(); // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
+    
+    response.render("index.liquid", { api: apiResponseJSON.data });
+  })
+  
 
 // Route voor de homepagina in het arabisch
 app.get('/ar', async function (request, response) {
@@ -140,5 +140,5 @@ app.post('/acquisition', async function (request, response) {
 
 // Start Express op, gebruik daarbij het zojuist ingestelde poortnummer op
 app.listen(app.get('port'), function () {
-  console.log(`Daarna kun je via http://localhost:${app.get('port')}/ jouw interactieve website bekijken.\n\nThe Web is for Everyone. Maak mooie dingen 🙂`)})
+  console.log(`http://localhost:${app.get('port')}`)})
   
