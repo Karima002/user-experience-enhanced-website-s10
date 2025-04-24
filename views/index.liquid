@@ -8,9 +8,30 @@
 <ul class="art_images">
     {% for artwork in artwork %}
         <li>
-            <a href="/object/{{ artwork.id }}">
-                <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" alt="images of artwork in qatar " width="300px">        
-            </a>
+        <a href="/object/{{ artwork.id }}">
+            <picture>
+                <source
+                    srcset="
+                        https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=avif&width=250 250w, 
+                        https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=avif&width=350 350w,
+                        https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=avif&width=450 450w,
+                        https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=avif&width=550 550w  
+                    "
+                    sizes="
+                    (max-width: 250px) 250px,
+                    (max-width: 350px) 350px,
+                    (max-width: 450px) 450px,
+                    (max-width: 550px) 550px
+                    "
+                    type="image/avif" /> <!-- Voor browsers die avif ondersteunen, 250w geeft de afbeeldingsbreedte in pixels, sizes: als het scherm 250px breed is, kiest de browser de 250px-afbeelding-->
+                    
+                    <!--Fallback voor als de browser geen avif ondersteunt, images worden alleen geladen als ze in de viewport komen met loading=lazy -->
+                    <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=png&width=300" 
+                    alt="images of artwork in qatar"
+                    loading="lazy"
+                    >        
+            </picture>
+        </a>
         </li>
     {% endfor %}
 </ul>
