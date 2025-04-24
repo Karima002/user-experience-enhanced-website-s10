@@ -8,11 +8,7 @@
 <ul class="art_images">
     {% for artwork in artwork %}
         <li>
-            {% if lang == 'nl' %}
-                <a href="/object/{{ artwork.id }}">
-            {% elsif lang == 'ar' %}
-                <a href="/ar/object/{{ artwork.id }}">
-            {% endif %}
+            <a href="/ar/object/{{ artwork.id }}">
                 <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" alt="images of artwork in qatar " width="300px">        
             </a>
         </li>

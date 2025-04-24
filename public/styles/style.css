@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* MARK: Header */
+header {
+    padding-bottom: .5em;
+    border-bottom: solid 1px var(--color-default);
+    padding-top: .5em;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.navigation-ar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    padding: .1em 1.7em .1em 1.7em;
+}
+
+.menu-logo {
+    padding-left: 2em;
+    justify-content: flex-start;
+}
+
+.menu-logo-ar {
+    padding-right: .2em;
+    justify-content: right;
+}
+
+.nav-list {
+    padding-right: 2em;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1.5em;
+    align-items: inherit;
+}
+
+.translated-menu {
+    display: none;
+    @media (min-width: 680px) {
+        display: flex;
+        flex-direction: column;
+    }
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.menu {
+    display: none;
+    @media (min-width: 680px) {
+        display: block;
+    }
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+span {
+    font-family: var(--font-default-bold-arabic);
+    font-weight: 550;
+    cursor: pointer;
+    
+}
+
+.link-menu {
+    font-family: var(--font-default-bold);
+    font-size: var(--font-size-s);
+    font-weight: 550;
+    color: var(--color-default);
+    text-transform: uppercase;
+}
+
+/* Fallback als 550 niet wordt ondersteund */
+@supports not (font-weight: 550) {
+    .link-menu {
+        font-weight: 500;
+    }
+}
+
+.link-ticket {
+    border: 2px solid var(--color-default);
+    font-family: var(--font-default);
+    background-color: var(--color-accent-yellow);
+    padding: 1em;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: var(--font-size-s);
+    color: var(--color-default);
+    font-weight: 550;
+    &:hover {
+        background-color: var(--color-default);
+        color: var(--color-accent);
+    }
+}
+
+.menu-button {
+    font-family: var(--font-default-bold);
+    font-size: var(--font-size-s);
+    text-transform: uppercase;
+    font-weight: 550;
+}
+
+/* MARK: main */
+
+.main-home {
+    padding: 0 2em 0 2em;
+}
+
+.art_images {
+    column-count: 2; /* Aantal kolommen */
+    gap: 1.5em; 
+        @media (min-width: 480px) {
+            column-count: 3;   
+        }
+        @media (min-width: 720px) {
+            column-count: 4;   
+        }
+}
+
+.art_images img {
+    display: block; /* Verwijdert inline-afstanden */
+    width: 100%; /* Zorg dat de afbeeldingen de kolom vullen */
+    height: auto; 
+    padding-top: 1.5em;
+    border-radius: .4em;
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.form-search-collection {
+    position: fixed;
+    bottom: 1em;
+    right: 50%;
+    cursor: pointer;
+    input::placeholder {
+        font-size: var(--font-size-xm);
+        padding-left: .5em;
+    }
+}
+
+.form-search-collection-ar {
+    position: fixed;
+    bottom: 1em;
+    right: 55%;
+    cursor: pointer;
+    input::placeholder {
+        font-weight: bold;
+        font-size: var(--font-size-xm);
+        padding-left: 1em;
+    }
+    
+}
+
+
+
+input[type="search"] {
+    -webkit-appearance: none; /* Verwijdert standaard WebKit-stijlen in Safari/Chrome*/
+    appearance: none;         /* Modern alternatief voor appearance reset, voor bredere browserondersteuning */
+    height: 3.5em;            
+    width: 150%;
+    @media (min-width: 480px) {
+        width: 200%;  
+        color: var(--color-default);
+        padding-left: 2em;
+        font-size: var(--font-size-xm);
+    }
+}
+
+
+/* view transition */
+
+@view-transition { /* Schakelt view-overgangen in voor navigatie binnen hetzelfde domein. bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition */
+    navigation: auto;
+}
+
+@keyframes move-out {
+    from {
+      transform: translateY(0%);
+    }
+  
+    to {
+      transform: translateY(-100%); /* Beweegt omhoog uit het zicht */
+    }
+  }
+  
+  @keyframes move-in { /* Definieert de 'move-in' animatie voor het nieuwe  element */
+    from {
+      transform: translateY(100%);
+    }
+  
+    to {
+      transform: translateY(0%); /* Beweeg naar de oorspronkelijke positie */
+    }
+  }
+  
+  ::view-transition-old(root) {
+    animation: 0.6s ease-in both move-out; /* Animeren over 0.6 seconden met een 'ease-in' timingfunctie */
+  }
+  
+  ::view-transition-new(root) {
+    animation: 0.6s ease-in both move-in;
+  }

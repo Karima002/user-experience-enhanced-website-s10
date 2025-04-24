@@ -1,0 +1,219 @@
+
+.artwork {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-detailpage);
+    max-width: 100vw;
+    position: relative;
+}
+
+.back-home {
+    background-color: var(--color-detailpage);
+    max-width: fit-content;
+    padding: 16px 22px 12px 14px;
+    position: absolute;
+    top: 0%;
+    left: .5%;
+
+    a {
+        color: var(--color-accent);
+        font-family: var(--font-default);
+        text-transform: uppercase;
+        font-size: var(--font-size-s);
+        &:hover {
+            text-decoration: underline;
+         }
+    }
+}
+
+.back-ar {
+    color: var(--color-accent);
+    font-family: var(--font-default);
+    text-transform: uppercase;
+    font-size: var(--font-size-m);
+    &:hover {
+        text-decoration: underline;
+        }
+}
+
+.copyright {
+    background-color: var(--color-detailpage);
+    max-width: fit-content;
+    padding: 16px 22px 12px 14px;
+    position: absolute;
+    bottom: 0%;
+    left: .5%;
+    p {
+        color: var(--color-accent);
+        font-family: var(--font-default);
+        font-size: var(--font-size-s);
+    }
+}
+
+.artwork-object {
+    width: 600px; /* Breedte instellen */
+    height: 45vw;
+    object-fit: cover;   
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    &:hover {
+        transform: scale(.95);
+    }
+}
+
+.description {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    column-gap: 5em;
+    padding-left: 2em;
+    padding-top: 2em;
+
+    h1 {
+        font-family: var(--font-default);
+        font-size: var(--font-size-xl);
+        font-weight: 100;
+        text-transform: uppercase;
+        grid-column: 1/2;
+        border-bottom: 1px solid var(--color-default);
+        padding: .7em 0 .7em 0;
+    }
+    .artwork-summary {
+        grid-column: 1/2;
+        font-family: var(--font-default);
+        font-weight: 100;
+        font-size: var(--font-size-s);
+        line-height: var(--line-height-text);
+        letter-spacing: var(--letter-spacing);
+        max-width: 40em;
+        padding-top: 1.5em;
+    }
+
+    .info-artwork {
+        border-right: .1em solid var(--color-default);
+    }
+
+    .info-artwork-ar {
+        border-right: .1em solid var(--color-default);
+    }
+}
+
+
+
+.table-info {
+    grid-column: 2/2;
+    table-layout: auto;
+    td {
+        padding: 1em 6em 0 0;
+    }
+    .label-cell {
+        font-family: var(--font-default-bold);
+        font-weight: 700;
+    }
+    
+    .value-cell {
+        font-family: var(--font-default);
+    
+    }
+}
+
+
+.summary-ar {
+    font-size: var(--font-size-xm);
+    grid-column: 1/2;
+    font-family: var(--font-light-arabic);
+    padding-top: 1.5em;
+    padding-right: .7em;
+    font-weight: 100;
+
+}
+
+
+.see-also {
+    padding-left: 2em;
+    padding-top: 4em;
+    padding-right: 2em;
+    h2 {
+        font-family: var(--font-default);
+        font-weight: 100 ;
+        font-size: var(--font-size-xm);
+        padding-bottom: 1em;
+    }
+}
+
+.suggestions {
+    display: flex;
+    margin-bottom: 2em;
+    li {
+        border: .1px solid var(--color-default); 
+        padding-bottom: 2em;
+
+    }
+    
+    img {
+        width: 100%;
+        height: 80%;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        &:hover {
+        transform: scale(.95);
+    }
+    }
+    h3 {
+        font-family: var(--font-default);
+        font-size: var(--font-size-m);
+        padding: .5em 1em 1em 1em;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+
+        }
+    }
+    p{
+        font-family: var(--font-default);
+        font-weight: 100;
+        font-size: var(--font-size-xxs);
+        letter-spacing: var(--letter-spacing);
+        padding: .5em 1em .5em 1em;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+/* view transition */
+
+@view-transition { /* Schakelt view-overgangen in voor navigatie binnen hetzelfde domein. bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition */
+    navigation: auto;
+}
+
+@keyframes move-out {
+    from {
+      transform: translateY(0%);
+    }
+  
+    to {
+      transform: translateY(-100%); /* Beweegt omhoog uit het zicht */
+    }
+  }
+  
+  @keyframes move-in { /* Definieert de 'move-in' animatie voor het nieuwe  element */
+    from {
+      transform: translateY(100%);
+    }
+  
+    to {
+      transform: translateY(0%); /* Beweeg naar de oorspronkelijke positie */
+    }
+  }
+  
+  ::view-transition-old(root) {
+    animation: 0.6s ease-in both move-out; /* Animeren over 0.6 seconden met een 'ease-in' timingfunctie */
+  }
+  
+  ::view-transition-new(root) {
+    animation: 0.6s ease-in both move-in;
+  }

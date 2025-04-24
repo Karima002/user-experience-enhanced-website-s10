@@ -1,0 +1,134 @@
+.title {
+    border-bottom: solid 1px var(--color-default);
+    margin-bottom: 5em;
+    padding-bottom: 1em;
+}
+
+.title-acquisition {
+    
+    font-family: var(--font-default);
+    font-size: var(--font-size-xxxl);
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 1em 0 1em 0;
+    border-bottom: solid 1px var(--color-default);
+    @supports (display: flex) {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+.paragraph-acquisition {
+    font-family: var(--font-default);
+    font-weight: 100;
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-text);
+    letter-spacing: var(--letter-spacing);
+    padding: 2em;
+    @supports (display: flex) {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.paragraph-mandatory {
+    color: var(--color-default);
+    font-family: var(--font-default);
+    font-size: var(--font-size-m);
+    padding-bottom: .5em;
+    padding-top: .5em;
+}
+
+.form-section {
+    @supports (display: flex) {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+    }
+
+}
+
+h2 {
+    font-family: var(--font-default);
+    font-weight: 100 ;
+    font-size: var(--font-size-xm);
+    margin-top: 2em;
+    margin-bottom: 1.2em;
+    place-content: center;
+    flex-direction: column;
+}
+
+
+form input[type="text"] {
+    @supports (display: flex) {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1em; 
+    }
+    width: 40rem; 
+    padding: 10px; 
+    font-size: var(--font-size-m); 
+}
+
+.text-history{
+    color: var(--color-default);
+    font-family: var(--font-default);
+    font-size: var(--font-size-s);
+}
+
+.history {
+    padding-bottom: 6em;
+}
+
+.succes-button {
+    border: 2px solid var(--color-default);
+    font-family: var(--font-default);
+    background-color: var(--color-accent-yellow);
+    padding: 1.3em 1.8em 1.3em 1.8em;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: var(--font-size-s);
+    color: var(--color-default);
+    font-weight: 550;
+    margin-top: 2em;
+    &:hover {
+        background-color: var(--color-default);
+        color: var(--color-accent);
+    }
+}
+
+.return-homepage {
+    position: relative;
+    left: 45%;
+    border: 2px solid var(--color-default);
+    font-family: var(--font-default);
+    background-color: var(--color-accent-yellow);
+    padding: .8em 1.8em .8em 1.8em;
+    text-transform: uppercase;
+    font-size: var(--font-size-s);
+    color: var(--color-default);
+    font-weight: 550;
+    margin-top: 2em;
+    &:hover {
+        background-color: var(--color-default);
+        color: var(--color-accent);
+    }
+}
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none; /*voorkomen dat de gebruiker op de knop kan klikken terwijl het aan het laden is.*/
+  }
+  
+  .loading::after {  /* .loading::after voegt een visueel element toe na de knop */
+    content: "⏳"; 
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 1 }
+    50% { opacity: 0.5 }
+    100% { opacity: 1 }
+  }
