@@ -40,10 +40,13 @@ app.get('/ar', async function (request, response) {
 // Route voor elk specifiek object
 app.get ('/object/:id', async function (request, response) {
     const artworkId = request.params.id; 
-    const apiResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}?fields=title,image,summary,artist,location,displayDate,materials,techniques,objectNumber,recordType`)
+    const apiResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}?fields=title,image,summary,artist,location,displayDate,materials,techniques,objectNumber,recordType,titleAR,summaryAR,objectNameAR`)
     const apiResponseJSON = await apiResponse.json() 
     
-    response.render("objects.liquid", { artwork: apiResponseJSON.data })
+    response.render("objects.liquid", { 
+        artwork: apiResponseJSON.data,
+        lang: 'nl'
+        })
   })
 
 
@@ -53,7 +56,10 @@ app.get('/ar/object/:id', async function (request, response) {
     const apiResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}?fields=titleAR,image,artist,displayDate,summaryAR,materials,techniques,objectNumber,objectNameAR`)
     const apiResponseJSON = await apiResponse.json() 
     
-    response.render("objects-ar.liquid", { artwork: apiResponseJSON.data })
+    response.render("objects-ar.liquid", { 
+        artwork: apiResponseJSON.data,
+        lang: 'ar'
+    })
   })
 
 
