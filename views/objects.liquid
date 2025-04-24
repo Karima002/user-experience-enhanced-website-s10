@@ -1,0 +1,113 @@
+{% render 'partials/head.liquid', title: 'Qatar Museums' %}
+
+{% render 'partials/header.liquid' %}
+
+<main class="main-detail">
+
+<!-- Image die uit de database wordt gehaald + alternatief als er geen image beschikbaar is--> 
+
+<section class="artwork">
+    <article class="back-home">
+        <img src="/assets/backbutton.svg" alt="svg of returing to previous page">>
+        <a href="/">Back</a>
+    </article>
+
+    {% if artwork.image %}
+        <img class="artwork-object" src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" alt="images of artwork in qatar " width="300px">        
+
+    {% else %}
+        <p>No image availible</p>
+    {% endif %}
+
+    <article class="copyright">
+        <p>© The Museum of Islamic Art, Doha</p>
+    </article>
+</section>
+
+<!-- informatie over de artwork: titel + beschrijving --> 
+
+<div class="description"> 
+    <section class="info-artwork">
+        <h1>{{ artwork.title }}</h1>
+        <p class="artwork-summary"> {{ artwork.summary }}</p>
+    </section>
+
+    <section class="table-info">
+        {% if artwork %}
+        <table>
+            <tr>
+                <td class="label-cell">Full title:</td>
+                <td class="value-cell"> {{ artwork.title | default: "No full title available"}}</td> <!-- Default filter: https://shopify.github.io/liquid/filters/default/-->
+            </tr>
+            <tr>
+                <td class="label-cell">Artist:</td>
+                <td class="value-cell"> {{ artwork.artist | default: "No artist available"}}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Location created:</td>
+                <td class="value-cell"> {{ artwork.location | default: "No location available"}}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Period:</td>
+                <td class="value-cell">{{ artwork.displayDate | default: "No period available"}}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Material:</td>
+                <td class="value-cell"> {{ artwork.materials | default: "No materia available"}}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Techniques:</td>
+                <td class="value-cell"> {{ artwork.techniques | default: "No techniques available" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Object number:</td>
+                <td class="value-cell">{{ artwork.objectNumber | default: "No object number available" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Record type:</td>
+                <td class="value-cell">{{ artwork.recordType | default: "No record type available" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Proposal</td>
+                <td class="value-cell">Interested in donating or selling an artwork to Qatar Museums? Submit your information through <a href="/acquisition">this</a> acquisitions proposal form.</td>
+            </tr>
+
+        </table>
+        {% else %}
+            <p>No information available for artwork</p> 
+        {% endif %}
+    </section>
+</div>
+
+<!-- Suggesties --> 
+
+<section class="see-also">
+    <h2>You may also like</h2>
+    <ul class="suggestions">
+        <li>
+            <img src="/assets/image1.png">
+            <p>Temsa7</p>
+            <h3>Family Reunion</h3>
+        </li>
+
+        <li>
+            <img src="/assets/image2.png">
+            <p>Iran, 1700 – 1800 CE</p>
+            <h3>Wood and Lacquer Bow</h3>
+        </li>
+
+        <li>
+            <img src="/assets/image3.png">
+            <p>Olafur Eliasson</p>
+            <h3>Shadows Traveling on the Sea of the Day</h3>
+        </li>
+
+        <li>
+            <img src="/assets/image4.png">
+            <p>Unkown</p>
+            <h3>Bukhnaq (Head Cover)</h3>
+        </li>
+    </ul>
+</section>
+</main>
+

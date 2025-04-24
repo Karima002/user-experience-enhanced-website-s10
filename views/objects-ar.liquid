@@ -1,0 +1,123 @@
+{% render 'partials/head.liquid', title: 'Qatar Museums' %}
+
+{% render 'partials/headerar.liquid' %}
+
+<main class="main-detail">
+
+<!-- Image die uit de database wordt gehaald --> 
+<section class="artwork">
+    <article class="back-home">
+        <img src="/assets/backbutton.svg" alt="رمز بياني للعودة إلى الصفحة السابقة">
+        <a href="/">ارجـع</a>
+    </article>
+
+    {% if artwork.image %}
+        <img class="artwork-object" src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" alt="images of artwork in qatar " width="300px">        
+
+    {% else %}
+        <p>لا تـوجـد صـورة </p>
+    {% endif %}
+
+    <article class="copyright">
+        <p>© مـتـحـف الـفـن الإسـلامـي، الـدوحـة</p>
+    </article>
+</section>
+
+<!-- Titel en beschrijving van de artwork --> 
+<div class="description"> 
+    <section class="info-artwork-ar">
+        {% if artwork %}
+            <h1>{{ artwork.titleAR }}</h1>
+            <p class="summary-ar"> {{ artwork.summaryAR }}</p>
+        {% else %}
+            <p> No description available </p>
+        {% endif %}
+    </section>
+
+    <section class="table-info">
+        {% if artwork %}
+        <table>
+            <tr>
+                <td class="label-cell">العنوان الكامل:</td>
+                <td class="value-cell"> {{ artwork.titleAR | default: "لا يوجد عنوان كامل متاح" }}</td> <!-- Default filter: https://shopify.github.io/liquid/filters/default/-->
+            </tr>
+            <tr>
+                <td class="label-cell">الفنان:</td>
+                <td class="value-cell"> {{ artwork.artist | default: "لا يوجد فنان متاح" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">الموقع الذي تم الإنشاء فيه:</td>
+                <td class="value-cell"> {{ artwork.location | default: "لا يوجد موقع متاح" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">الفترة الزمنية:</td>
+                <td class="value-cell">{{ artwork.displayDate | default: "لا توجد فترة زمنية متاحة" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">المواد:</td>
+                <td class="value-cell"> {{ artwork.materials | default: "لا توجد مواد متاحة" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">التقنيات:</td>
+                <td class="value-cell"> {{ artwork.techniques | default: "لا توجد تقنيات متاحة" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">رقم الكائن:</td>
+                <td class="value-cell">{{ artwork.objectNumber | default: "لا يوجد رقم كائن متاح" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">اسم الكائن:</td>
+                <td class="value-cell">{{ artwork.objectNameAR | default: "لا يوجد رقم كائن متاح" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">نوع السجل:</td>
+                <td class="value-cell">{{ artwork.recordType | default: "لا يوجد نوع سجل متاح" }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell">اقتراح:</td>
+                <td class="value-cell">هل أنت مهتم بالتبرع أو بيع عمل فني لمتاحف قطر؟ قم بإرسال معلوماتك من خلال <a href="/acquisitionar">نموذج اقتراح الاقتناء</a>.</td>
+            </tr>
+
+    </table>
+    {% else %}
+        <p>لا توجد معلومات متاحة عن العمل الفني</p>
+    {% endif %}
+    </section>
+</div>
+
+
+
+
+<!-- Suggesties -->
+
+<section class="see-also">
+    <h2>قد يعجبك أيضًا</h2>
+        <ul class="suggestions">
+            <li>
+                <img src="/assets/image1.png">
+                <p>تمساح</p>
+                <h3>لم شمل العائلة</h3>
+            </li>
+
+            <li>
+                <img src="/assets/image2.png">
+                <p>إيران، 1700 – 1800 م</p>
+                <h3>قوس من الخشب والورنيش</h3>
+            </li>
+
+            <li>
+                <img src="/assets/image3.png">
+                <p>أولافور إلياسون</p>
+                <h3>الظلال تسافر على بحر النهار</h3>
+            </li>
+
+            <li>
+                <img src="/assets/image4.png">
+                <p>مجهول</p>
+                <h3>بخناق (غطاء رأس)</h3>
+            </li>
+        </ul>
+</section>
+
+</main>
+

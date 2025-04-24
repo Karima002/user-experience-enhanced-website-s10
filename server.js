@@ -28,7 +28,7 @@ app.get('/ar', async function (request, response) {
     const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
     const apiResponseJSON = await apiResponse.json(); 
     
-    response.render("indexar.liquid", { artwork: apiResponseJSON.data }) 
+    response.render("index-ar.liquid", { artwork: apiResponseJSON.data }) 
   })
   
 // Route voor elk specifiek object
@@ -47,7 +47,7 @@ app.get('/ar/object/:id', async function (request, response) {
     const apiResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}?fields=titleAR,image,artist,displayDate,summaryAR,materials,techniques,objectNumber,objectNameAR`)
     const apiResponseJSON = await apiResponse.json() 
     
-    response.render("objectar.liquid", { artwork: apiResponseJSON.data })
+    response.render("objects-ar.liquid", { artwork: apiResponseJSON.data })
   })
 
 
@@ -77,7 +77,7 @@ app.get('/acquisition', async function (request, response) {
     const messageResponse = await fetch("https://fdnd-agency.directus.app/items/fabrique_messages/?filter={%22for%22:%20{%22_contains%22:%20%22Karima_%22}}")
     const messageResponseJSON = await messageResponse.json()
   
-    response.render("acquisitionar.liquid", { 
+    response.render("acquisitions-ar.liquid", { 
       api: apiResponseJSON.data, 
       messages: messageResponseJSON.data,
     })
