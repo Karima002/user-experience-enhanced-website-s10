@@ -11,7 +11,7 @@ app.use(express.static('public')) //voor de public map voor statische bestanden 
 const engine = new Liquid() // Liquid als view-engine instellen
 app.engine('liquid', engine.express())
 
-app.set('views', './view') //Instellen van de map met de Liquid templates
+app.set('views', './views') //Instellen van de map met de Liquid templates
 
 
 //GET routes
