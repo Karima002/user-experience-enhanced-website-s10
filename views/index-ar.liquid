@@ -6,9 +6,13 @@
 <main class="main-home">
 
 <ul class="art_images">
-    {% for artwork in api %}
+    {% for artwork in artwork %}
         <li>
-            <a href="/ar/object/{{ artwork.id }}">
+            {% if lang == 'nl' %}
+                <a href="/object/{{ artwork.id }}">
+            {% elsif lang == 'ar' %}
+                <a href="/ar/object/{{ artwork.id }}">
+            {% endif %}
                 <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" alt="images of artwork in qatar " width="300px">        
             </a>
         </li>

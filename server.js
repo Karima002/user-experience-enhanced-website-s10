@@ -19,7 +19,10 @@ app.get('/', async function (request, response) {
     const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
     const apiResponseJSON = await apiResponse.json(); // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
     
-    response.render("index.liquid", { api: apiResponseJSON.data });
+    response.render("index.liquid", { 
+        artwork: apiResponseJSON.data,
+        lang: 'nl'
+    })
   })
   
 
@@ -28,7 +31,10 @@ app.get('/ar', async function (request, response) {
     const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
     const apiResponseJSON = await apiResponse.json(); 
     
-    response.render("index-ar.liquid", { artwork: apiResponseJSON.data }) 
+    response.render("index-ar.liquid", { 
+        artwork: apiResponseJSON.data,
+        lang: 'ar'
+     }) 
   })
   
 // Route voor elk specifiek object
