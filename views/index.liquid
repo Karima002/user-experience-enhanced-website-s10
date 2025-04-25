@@ -27,7 +27,7 @@
                     
                     <!--Fallback voor als de browser geen avif ondersteunt, images worden alleen geladen als ze in de viewport komen met loading=lazy -->
                     <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=png&width=300" 
-                    alt="images of artwork in qatar"
+                    alt= {{ artwork.title }}
                     loading="lazy"
                     >        
             </picture>
