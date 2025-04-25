@@ -15,7 +15,7 @@ app.set('views', './views') //Instellen van de map met de Liquid templates
 
 
 //GET routes
-app.get('/', async function (request, response) {
+app.get('/en', async function (request, response) {
     const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
     const apiResponseJSON = await apiResponse.json(); // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
     
@@ -38,14 +38,15 @@ app.get('/ar', async function (request, response) {
   })
   
 // Route voor elk specifiek object
-app.get ('/object/:id', async function (request, response) {
+app.get ('/object/:id/:lang', async function (request, response) {
     const artworkId = request.params.id; 
+    const langId = request.params.lang;
     const apiResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}?fields=title,image,summary,artist,location,displayDate,materials,techniques,objectNumber,recordType,titleAR,summaryAR,objectNameAR`)
     const apiResponseJSON = await apiResponse.json() 
     
     response.render("objects.liquid", { 
         artwork: apiResponseJSON.data,
-        lang: 'nl'
+        lang: langId
         })
   })
 
