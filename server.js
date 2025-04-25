@@ -21,7 +21,7 @@ app.get('/en', async function (request, response) {
     
     response.render("index.liquid", { 
         artwork: apiResponseJSON.data,
-        lang: 'nl'
+        lang: 'en'
     })
   })
   
@@ -153,5 +153,5 @@ app.post('/acquisition', async function (request, response) {
 
 // Start Express op, gebruik daarbij het zojuist ingestelde poortnummer op
 app.listen(app.get('port'), function () {
-  console.log(`http://localhost:${app.get('port')}`)})
+  console.log(`http://localhost:${app.get('port')}/en`)})
   
