@@ -2,102 +2,152 @@
 
 {% render 'partials/header.liquid' %}
 
+{% if lang == 'en' %}
 
-<main>
+    <main>
 
-<section class="title">
-    <h1 class="title-acquisition">Proposal for object acquisition</h1>
+    <section class="title">
+        <h1 class="title-acquisition">Proposal for object acquisition</h1>
+        
+        <p class="paragraph-acquisition">Interested in donating or selling an artwork to Qatar Museums? Submit your information through this acquisitions proposal form.</p>
+
+    </section>
+
+    <section class="form-section ">
+        <p class="paragraph-mandatory"> Fields marked * are Mandatory</p>
+
+        <form method="post" action="/acquisition" data-enhanced="formulier-{{ id }}">
+        <h2>Your information</h2>
+            <p class="paragraph-mandatory">Full name*</p>
+            <input type="text" name="name" required/>
+
+            <p class="paragraph-mandatory">E-mail*</p>
+            <input type="text" name="email" required/>
+
+            <h2>Object details</h2>
+            <input type="text" name="description" required/>
+
+            <button  id="submit-button" class="succes-button" >Submit</button>
+        </form>
+
+    </section>
+    <section class="form-section history">
+        <h2>History proposals</h2>
+
+        {% for message in messages reversed %} <!-- de nieuwste berichten als eerste worden getoond-->
+            {% if forloop.index <= 3 %} <!-- forloop.index begint bij 1, dus dit pakt alleen object 1, 2 en 3 (beginnend vanaf onderaan maar reversed door de filter op voorgaande regel). -->          
+                <p class="text-history"> {{ "Successful sent proposal at " | append: message.created }} </p> <!-- append is een Liquid filter waarmee je tekst of data aan het einde van een string plakt. -->
+            {% else %}
+                {% break %} <!-- De rest van de berichten na object 3 worden niet bekeken-->
+            {% endif %}
+        {% endfor %}
+
+    </section>
+
+    </main>
+
+{% elsif lang == 'ar'%}
+    <main>
+
+        <section class="title">
+            <h1 class="title-acquisition">اقتراح لاكتساب كائن</h1>
+            <p class="paragraph-acquisition">هل أنت مهتم بالتبرع أو بيع عمل فني لمتاحف قطر؟ قم بإرسال معلوماتك من خلال هذا النموذج لاقتراح الاقتناء.</p>
+        </section>
+
+        <section class="form-section">
+            <p class="paragraph-mandatory">الحقول المحددة بـ * إلزامية</p>
+
+            <form method="post" action="/acquisition" lang="ar">
+                <h2>معلوماتك</h2>
+                <p class="paragraph-mandatory">الاسم الكامل*</p>
+                <input type="text" name="name" required  lang="ar" dir="rtl"/> <!-- de lang en dir attributen geven aan dat de inhoud van rechts naar links is en in het Arabisch is (mobiel) -->
+
+                <p class="paragraph-mandatory">البريد الإلكتروني*</p>
+                <input type="text" name="email" required  lang="ar" dir="rtl"/>
+
+                <h2>تفاصيل الكائن</h2>
+                <input type="text" name="description" required  lang="ar" dir="rtl"/>
+
+                <button class="succes-button">إرسال</button>
+            </form>
+        </section>
+
+        <section class="form-section history">
+            <h2>سجل الاقتراحات</h2>
+
+            {% for message in messages reversed %}
+                {% if forloop.index <= 3 %}
+                    <p class="text-history"> {{ "تم إرسال الاقتراح بنجاح في " | append: message.created }} </p>
+                {% else %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+        </section>
+    </main>
+
+{% else %}
+    <section class="title">
+        <h1 class="title-acquisition">Page not found</h1>
+        
+        <p class="paragraph-acquisition">Looks like this page doesn’t exist in this language.</p>
     
-    <p class="paragraph-acquisition">Interested in donating or selling an artwork to Qatar Museums? Submit your information through this acquisitions proposal form.</p>
-
-</section>
-
-<section class="form-section ">
-    <p class="paragraph-mandatory"> Fields marked * are Mandatory</p>
-
-    <form method="post" action="/acquisition" data-enhanced="formulier-{{ id }}">
-    <h2>Your information</h2>
-        <p class="paragraph-mandatory">Full name*</p>
-        <input type="text" name="name" required/>
-
-        <p class="paragraph-mandatory">E-mail*</p>
-        <input type="text" name="email" required/>
-
-        <h2>Object details</h2>
-        <input type="text" name="description" required/>
-
-        <button  id="submit-button" class="succes-button" >Submit</button>
-    </form>
-
-</section>
-<section class="form-section history">
-    <h2>History proposals</h2>
-
-    {% for message in messages reversed %} <!-- de nieuwste berichten als eerste worden getoond-->
-        {% if forloop.index <= 3 %} <!-- forloop.index begint bij 1, dus dit pakt alleen object 1, 2 en 3 (beginnend vanaf onderaan maar reversed door de filter op voorgaande regel). -->          
-            <p class="text-history"> {{ "Successful sent proposal at " | append: message.created }} </p> <!-- append is een Liquid filter waarmee je tekst of data aan het einde van een string plakt. -->
-        {% else %}
-            {% break %} <!-- De rest van de berichten na object 3 worden niet bekeken-->
-        {% endif %}
-    {% endfor %}
-
-</section>
-
-</main>
+        <a class="return-homepage" href="/">Homepage</a>    
+    </section>
+{% endif %}
 
 
-<script>
-    // CLIENT SIDE JS ENHANCEMENT
-    document.addEventListener('submit', async function(event) { //Luisteren naar elk formulier dat gesubmit wordt
-        const form = event.target   // Hou in een variabele bij welk formulier dat was
-            if (!form.hasAttribute('data-enhanced')) { //Checken of het formulier zo’n data-enhanced attribuut heeft – anders doe je niks.
+    <script>
+        // CLIENT SIDE JS ENHANCEMENT
+        document.addEventListener('submit', async function(event) { //Luisteren naar elk formulier dat gesubmit wordt
+            const form = event.target   // Hou in een variabele bij welk formulier dat was
+                if (!form.hasAttribute('data-enhanced')) { //Checken of het formulier zo’n data-enhanced attribuut heeft – anders doe je niks.
+                return
+            }
+
+            event.preventDefault() //Voorkom dat de browser de pagina ververst. Hiermee overschrijd je de default loading state van de browser.
+
+            let formData = new FormData(form) //Verzamel alle formuliervelden van het formulier
+
+            if (event.submitter) {
+            formData.append(event.submitter.name, event.submitter.value) //Zorgt ervoor dat de knop waarop je klikt ook meegestuurd wordt met de rest van het formulier.     // En voeg eventueel de name en value van de submit button toe aan die data
+            }
+
+            
+            //Loading state 
+            const submitButton = form.querySelector('#submit-button'); //zoeken naar submit button binnen het formulier. Hier wordt gezocht naar een button element met ID submit-button
+            submitButton.classList.add('loading'); //Classlist toevoegen aan de submit button
+            submitButton.disabled = true; //Hiermee wordt voorkomen dat de gebruiker de knop meerdere keren aanklikt terwijl het formulier nog wordt verzonden.
+
+            //Verstuur de data via fetch() naar de action URL met de juiste method (POST):
+            const response = await fetch(form.action, {
+            method: form.method,
+            body: new URLSearchParams(formData)
+            })
+
+            // Als er een redirect is (zoals naar /succesfull), stuur de gebruiker daarheen
+            if (response.redirected) {
+            window.location.href = response.url
             return
-        }
+            }
 
-        event.preventDefault() //Voorkom dat de browser de pagina ververst. Hiermee overschrijd je de default loading state van de browser.
+            // Alleen uitvoeren als er géén redirect is (bijv. validatiefouten of update van het formulier)
+            //Ontvang de HTML die de server terugstuurt
+            const responseText = await response.text() // De server redirect op de normale manier, en geeft HTML terug
+            
+            //Parse die HTML in JavaScript (zoals de browser dat zou doen)
+            const parser = new DOMParser()
+            const responseDOM = parser.parseFromString(responseText, 'text/html')
+            
+            //Zoek daarin het vernieuwde formulier of stukje UI dat je wilt vervangen.
+            const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
 
-        let formData = new FormData(form) //Verzamel alle formuliervelden van het formulier
+            //Vervang het oude formulier met de nieuwe HTML:
+            if (newState) {
+            form.outerHTML = newState.outerHTML
+            }
 
-        if (event.submitter) {
-        formData.append(event.submitter.name, event.submitter.value) //Zorgt ervoor dat de knop waarop je klikt ook meegestuurd wordt met de rest van het formulier.     // En voeg eventueel de name en value van de submit button toe aan die data
-        }
-
-        
-        //Loading state 
-        const submitButton = form.querySelector('#submit-button'); //zoeken naar submit button binnen het formulier. Hier wordt gezocht naar een button element met ID submit-button
-        submitButton.classList.add('loading'); //Classlist toevoegen aan de submit button
-        submitButton.disabled = true; //Hiermee wordt voorkomen dat de gebruiker de knop meerdere keren aanklikt terwijl het formulier nog wordt verzonden.
-
-        //Verstuur de data via fetch() naar de action URL met de juiste method (POST):
-        const response = await fetch(form.action, {
-        method: form.method,
-        body: new URLSearchParams(formData)
+            // Na succesvolle verzending de loading knop herstellen
+            submitButton.classList.remove('loading');
+            submitButton.disabled = false;
         })
-
-        // Als er een redirect is (zoals naar /succesfull), stuur de gebruiker daarheen
-        if (response.redirected) {
-        window.location.href = response.url
-        return
-        }
-
-        // Alleen uitvoeren als er géén redirect is (bijv. validatiefouten of update van het formulier)
-        //Ontvang de HTML die de server terugstuurt
-        const responseText = await response.text() // De server redirect op de normale manier, en geeft HTML terug
-        
-        //Parse die HTML in JavaScript (zoals de browser dat zou doen)
-        const parser = new DOMParser()
-        const responseDOM = parser.parseFromString(responseText, 'text/html')
-        
-        //Zoek daarin het vernieuwde formulier of stukje UI dat je wilt vervangen.
-        const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
-
-        //Vervang het oude formulier met de nieuwe HTML:
-        if (newState) {
-        form.outerHTML = newState.outerHTML
-        }
-
-        // Na succesvolle verzending de loading knop herstellen
-        submitButton.classList.remove('loading');
-        submitButton.disabled = false;
-    })
-</script>
+    </script>
