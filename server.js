@@ -38,7 +38,7 @@ app.get('/ar', async function (request, response) {
   })
   
 // Route voor elk specifiek object
-app.get ('/object/:id/:lang', async function (request, response) {
+app.get ('/:lang/object/:id/', async function (request, response) {
     const artworkId = request.params.id; 
     const langId = request.params.lang;
     const apiResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}?fields=title,image,summary,artist,location,displayDate,materials,techniques,objectNumber,recordType,titleAR,summaryAR,objectNameAR`)
@@ -53,51 +53,32 @@ app.get ('/object/:id/:lang', async function (request, response) {
 
 
 // Voor de pagina's met het formulier
-app.get('/acquisition/:lang', async function (request, response) {
+app.get('/:lang/acquisition', async function (request, response) {
     const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
     const apiResponseJSON = await apiResponse.json()
     const messageResponse = await fetch("https://fdnd-agency.directus.app/items/fabrique_messages/?filter={%22for%22:%20{%22_contains%22:%20%22Karima_%22}}")
     const messageResponseJSON = await messageResponse.json(); // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
     const langId = request.params.lang; //parameter voor de language switch
-
+    
     response.render("acquisitions.liquid", { 
       api: apiResponseJSON.data, 
       messages: messageResponseJSON.data,
       id: 'karima-form',
       lang: langId
-    });
-  });
-  
-  
-  app.get('/ar/acquisition', async function (request, response) {
-    const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects'
-    );
-    const apiResponseJSON = await apiResponse.json()
-
-    // Voor het weergeven van de opgehaalde data in op de acquisitionpagina
-    const messageResponse = await fetch("https://fdnd-agency.directus.app/items/fabrique_messages/?filter={%22for%22:%20{%22_contains%22:%20%22Karima_%22}}")
-    const messageResponseJSON = await messageResponse.json()
-  
-    response.render("acquisitions-ar.liquid", { 
-      api: apiResponseJSON.data, 
-      messages: messageResponseJSON.data,
     })
   })
+  
 
-  app.get('/succesfull', async function (request, response) {
+  app.get('/:lang/succesfull', async function (request, response) {
     const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
     const apiResponseJSON = await apiResponse.json()
-    
-    response.render("succes.liquid", { api: apiResponseJSON.data })
-  })
+    const langId = request.params.lang; 
 
-  app.get('/ar/succesfull', async function (request, response) {
-    const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects')
-    const apiResponseJSON = await apiResponse.json()
-    
-    response.render("succesar.liquid", { api: apiResponseJSON.data })
+    response.render("succes.liquid", { 
+      api: apiResponseJSON.data,
+      lang: langId
+     })
   })
-
 
 //POST routes
 let forms = [] //array voor het opslaan van formulieren
@@ -116,7 +97,7 @@ app.post('/acquisition', async function (request, response) {
       }, //request met post, met headers geef je aan wat er is meegegeven, je geeft informatie over wat je in de request heb meegegeven. 
     });
     
-    response.redirect(303, '/succesfull') //Na het versturen van de gegevens naar de API wordt de gebruiker doorgestuurd naar de pagina /succesfull
+    response.redirect(303, '/en/succesfull') //Na het versturen van de gegevens naar de API wordt de gebruiker doorgestuurd naar de pagina /succesfull
   
   })
 
