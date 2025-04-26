@@ -26,6 +26,7 @@
     line-height: var(--line-height-text);
     letter-spacing: var(--letter-spacing);
     padding: 2em;
+    text-align: right;
     @supports (display: flex) {
         display: flex;
         justify-content: center;
@@ -62,14 +63,18 @@ h2 {
 
 
 form input[type="text"] {
+    width: 20rem;
+    @media (min-width: 680px) {
+        width: 40rem; 
+        padding: 10px; 
+        font-size: var(--font-size-m); 
+    }
     @supports (display: flex) {
         display: flex;
         flex-direction: column;
         padding-bottom: 1em; 
     }
-    width: 40rem; 
-    padding: 10px; 
-    font-size: var(--font-size-m); 
+ 
 }
 
 .text-history{
@@ -84,20 +89,25 @@ form input[type="text"] {
 
 .succes-button {
     position: relative;
-    left: 86%;
+    left: 74%;
     border: 2px solid var(--color-default);
     font-family: var(--font-default);
     background-color: var(--color-accent-yellow);
-    padding: 1.3em 1.8em 1.3em 1.8em;
+    padding: 1em 1.5em 1em 1.5em;
     text-transform: uppercase;
     font-size: var(--font-size-s);
     color: var(--color-default);
     font-weight: 550;
     margin-top: 2em;
-    &:hover {
-        background-color: var(--color-default);
-        color: var(--color-accent);
-    }
+        &:hover {
+            background-color: var(--color-default);
+            color: var(--color-accent);
+        }
+        @media (min-width: 680px) {
+            left: 86%;
+            padding: 1.3em 1.8em 1.3em 1.8em;
+
+        }
 }
 
 .return-homepage {
