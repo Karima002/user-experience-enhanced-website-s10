@@ -83,11 +83,12 @@ form input[type="text"] {
 }
 
 .succes-button {
+    position: relative;
+    left: 86%;
     border: 2px solid var(--color-default);
     font-family: var(--font-default);
     background-color: var(--color-accent-yellow);
     padding: 1.3em 1.8em 1.3em 1.8em;
-    align-items: center;
     text-transform: uppercase;
     font-size: var(--font-size-s);
     color: var(--color-default);
