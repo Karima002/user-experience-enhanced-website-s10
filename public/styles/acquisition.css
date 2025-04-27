@@ -41,6 +41,12 @@
     padding-top: .5em;
 }
 
+.paragraph-upload {
+    font-family: var(--font-default);
+    font-size: var(--font-size-m);
+    padding-bottom: .2em;
+}
+
 .form-section {
     @supports (display: flex) {
         display: flex;
@@ -84,12 +90,12 @@ form input[type="text"] {
 }
 
 .history {
-    padding-bottom: 6em;
+    padding: 6em 0 6em 0;
 }
 
-.succes-button {
+.submit-button-en {
+    display: flex;
     position: relative;
-    left: 74%;
     border: 2px solid var(--color-default);
     font-family: var(--font-default);
     background-color: var(--color-accent-yellow);
@@ -98,13 +104,12 @@ form input[type="text"] {
     font-size: var(--font-size-s);
     color: var(--color-default);
     font-weight: 550;
-    margin-top: 2em;
+    margin-top: 3em;
         &:hover {
             background-color: var(--color-default);
             color: var(--color-accent);
         }
         @media (min-width: 680px) {
-            left: 86%;
             padding: 1.3em 1.8em 1.3em 1.8em;
 
         }
