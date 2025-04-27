@@ -115,6 +115,36 @@ form input[type="text"] {
         }
 }
 
+.submit-button-ar {
+    display: flex;
+    left: 73%;
+    position: relative;
+    border: 2px solid var(--color-default);
+    font-family: var(--font-default);
+    background-color: var(--color-accent-yellow);
+    padding: 1em 1.5em 1em 1.5em;
+    text-transform: uppercase;
+    font-size: var(--font-size-s);
+    color: var(--color-default);
+    font-weight: 550;
+    margin-top: 5%;
+        &:hover {
+            background-color: var(--color-default);
+            color: var(--color-accent);
+        }
+        @media (min-width: 680px) {
+            padding: 1.3em 1.8em 1.3em 1.8em;
+            left: 85%;
+
+        }
+}
+
+
+.file-input-ar {
+    direction: rtl;
+    float: right;
+}
+
 .return-homepage {
     position: relative;
     left: 45%;
