@@ -103,6 +103,8 @@ span {
     &:hover {
         background-color: var(--color-default);
         color: var(--color-accent);
+        transition-timing-function: ease-in;
+        transition: .5s;
     }
 }
 
@@ -182,36 +184,39 @@ input[type="search"] {
 }
 
 
-/* view transition */
 
-@view-transition { /* Schakelt view-overgangen in voor navigatie binnen hetzelfde domein. bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition */
+/* MARK: VIEW TRANSITION*/
+
+@view-transition{ /*hiermee wordt de @viewtransitie geactiveerd: https://developer.chrome.com/docs/web-platform/view-transitions*/
     navigation: auto;
 }
 
 @keyframes move-out {
-    from {
-      transform: translateY(0%);
+    0% {
+        transform: translateX(0%);
     }
-  
-    to {
-      transform: translateY(-100%); /* Beweegt omhoog uit het zicht */
+    30% {
+        transform: translateX(-30%)
     }
-  }
-  
-  @keyframes move-in { /* Definieert de 'move-in' animatie voor het nieuwe  element */
-    from {
-      transform: translateY(100%);
+    50% {
+        transform: translateX(-50%);
     }
-  
-    to {
-      transform: translateY(0%); /* Beweeg naar de oorspronkelijke positie */
+    100% {
+        transform: translateX(-100%);
     }
-  }
-  
-  ::view-transition-old(root) {
-    animation: 0.6s ease-in both move-out; /* Animeren over 0.6 seconden met een 'ease-in' timingfunctie */
-  }
-  
-  ::view-transition-new(root) {
-    animation: 0.6s ease-in both move-in;
-  }
+}
+
+@keyframes move-in {
+    0% {
+        transform: translateX(100%);
+    }
+    30% {
+        transform: translateX(30%)
+    }
+    50% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}

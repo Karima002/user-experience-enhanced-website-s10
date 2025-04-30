@@ -108,6 +108,8 @@ form input[type="text"] {
         &:hover {
             background-color: var(--color-default);
             color: var(--color-accent);
+            transition-timing-function: ease-in;
+            transition: .5s;
         }
         @media (min-width: 680px) {
             padding: 1.3em 1.8em 1.3em 1.8em;
@@ -131,6 +133,8 @@ form input[type="text"] {
         &:hover {
             background-color: var(--color-default);
             color: var(--color-accent);
+            transition-timing-function: ease-in;
+            transition: .5s;
         }
         @media (min-width: 680px) {
             padding: 1.3em 1.8em 1.3em 1.8em;
@@ -160,6 +164,8 @@ form input[type="text"] {
     &:hover {
         background-color: var(--color-default);
         color: var(--color-accent);
+        transition-timing-function: ease-in;
+        transition: .5s;
     }
 }
 
