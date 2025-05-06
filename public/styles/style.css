@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+
+
 /* MARK: Header */
 header {
     padding-bottom: .5em;
@@ -139,9 +141,7 @@ span {
     padding-top: 1.5em;
     border-radius: .4em;
     transition: transform 0.3s ease;
-    &:hover {
-        transform: scale(1.05);
-    }
+    
 }
 
 .form-search-collection {
@@ -184,39 +184,37 @@ input[type="search"] {
 }
 
 
-
-/* MARK: VIEW TRANSITION*/
-
-@view-transition{ /*hiermee wordt de @viewtransitie geactiveerd: https://developer.chrome.com/docs/web-platform/view-transitions*/
+@view-transition { /* Schakelt view-overgangen in voor navigatie binnen hetzelfde domein. bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition */
     navigation: auto;
 }
 
-@keyframes move-out {
-    0% {
-        transform: translateX(0%);
-    }
-    30% {
-        transform: translateX(-30%)
-    }
-    50% {
-        transform: translateX(-50%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
 
-@keyframes move-in {
-    0% {
-        transform: translateX(100%);
+
+
+@keyframes move-out {
+    from {
+      transform: translateY(0%);
     }
-    30% {
-        transform: translateX(30%)
+  
+    to {
+      transform: translateY(-100%); /* Beweegt omhoog uit het zicht */
     }
-    50% {
-        transform: translateX(50%);
+  }
+  
+  @keyframes move-in { /* Definieert de 'move-in' animatie voor het nieuwe  element */
+    from {
+      transform: translateY(100%);
     }
-    100% {
-        transform: translateX(0%);
+  
+    to {
+      transform: translateY(0%); /* Beweeg naar de oorspronkelijke positie */
     }
-}
+  }
+  
+  ::view-transition-old(root) { 
+    animation: 0.6s ease-in both move-out; 
+  }
+  
+  ::view-transition-new(root) {
+    animation: 0.6s ease-in both move-in;
+  }
