@@ -188,9 +188,6 @@ input[type="search"] {
     navigation: auto;
 }
 
-
-
-
 @keyframes move-out {
     from {
       transform: translateY(0%);
