@@ -57,9 +57,7 @@
     object-fit: cover;   
     transition: transform 0.3s ease;
     cursor: pointer;
-    &:hover {
-        transform: scale(.95);
-    }
+    
 }
 
 .description {
@@ -155,9 +153,8 @@
         height: 80%;
         transition: transform 0.3s ease;
         cursor: pointer;
-        &:hover {
-        transform: scale(.95);
-    }
+        
+    
     }
     h3 {
         font-family: var(--font-default);
@@ -183,39 +180,3 @@
 }
 
 
-
-/* MARK: VIEW TRANSITION*/
-
-@view-transition{ /*hiermee wordt de @viewtransitie geactiveerd: https://developer.chrome.com/docs/web-platform/view-transitions*/
-    navigation: auto;
-}
-
-@keyframes move-out {
-    0% {
-        transform: translateX(0%);
-    }
-    30% {
-        transform: translateX(-30%)
-    }
-    50% {
-        transform: translateX(-50%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-@keyframes move-in {
-    0% {
-        transform: translateX(100%);
-    }
-    30% {
-        transform: translateX(30%)
-    }
-    50% {
-        transform: translateX(50%);
-    }
-    100% {
-        transform: translateX(0%);
-    }
-}
