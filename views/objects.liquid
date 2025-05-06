@@ -7,12 +7,16 @@
     <main class="main-detail">
         <section class="artwork">
             <article class="back-home">
-                <img src="/assets/backbutton.svg" alt="svg of returing to previous page">>
+                <img src="/assets/backbutton.svg" alt="svg of returing to previous page">
                 <a href="/en">Back</a>
             </article>
 
             {% if artwork.image %}
-                <img class="artwork-object" src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" alt="images of artwork in qatar " width="300px">        
+                <img class="artwork-object" src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" 
+                     alt="images of artwork in qatar " 
+                     width="300"
+                     height="300"
+                >
 
             {% else %}
                 <p>No image availible</p>
