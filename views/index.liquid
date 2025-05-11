@@ -28,11 +28,12 @@
                             type="image/avif" /> <!-- Voor browsers die avif ondersteunen, 250w geeft de afbeeldingsbreedte in pixels, sizes: als het scherm 250px breed is, kiest de browser de 250px-afbeelding-->
                             
                             <!--Fallback voor als de browser geen avif ondersteunt, images worden alleen geladen als ze in de viewport komen met loading=lazy -->
-                            <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=png&width=300" 
-                            alt= {{ artwork.title }}
-                            width="300"
-                            height="400"
-                            >        
+                             <img 
+                                src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=png&width=300" 
+                                alt="{{ artwork.title }}"
+                                width="{{ artwork.width }}"
+                                height="{{ artwork.height }}"
+                                loading="lazy">      
                     </picture>
                 </a>
                 </li>
