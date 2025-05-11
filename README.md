@@ -49,16 +49,9 @@ Tussen het navigeren van de homepagina en detailpagina is een view-transition to
 https://github.com/user-attachments/assets/24d020e5-d820-49a7-be4e-2a5b7376140c
 
 
-### Hover effect
-Zowel de afbeeldingen als de header hebben een hover effect. Dit is een vorm van feedforward voor de gebruiker dat er een actie kan volgen na het klikken. 
-
-https://github.com/user-attachments/assets/480a0f9c-8456-46cb-90c4-c803fb402f40
-
-
 ### Loading State
 Voordat het formulier wordt verzonden krijg je een loading state te zien. De opacity van de button wordt verlaagd en er komt een zandloper emoji tevoorschijn. De loading state is gecodeerd met behulp van javascript.
 
-https://github.com/Karima002/the-web-is-for-everyone-interactive-functionality-/blob/66bd915bbfd0c8e5df5974ab917850dc69898b6a/views/acquisitions.liquid#L65-L69
 
 https://github.com/user-attachments/assets/a2d31e63-afc6-49ce-91be-2f96a40fde67
 
