@@ -85,6 +85,20 @@ span {
     text-transform: uppercase;
 }
 
+.link-menu-place, .link-menu-place-nl  {
+    font-family: var(--font-default-bold);
+    font-size: var(--font-size-s);
+    font-weight: 550;
+    color: var(--color-default);
+    text-transform: uppercase;
+    background-image: url("/assets/plaats.svg");
+    background-size: 2em 2em;
+    background-repeat: no-repeat;
+    background-position: .25em center;
+    padding: 1em .75em .75em 2.5em;
+}
+
+
 /* Fallback als 550 niet wordt ondersteund */
 @supports not (font-weight: 550) {
     .link-menu {
@@ -115,6 +129,10 @@ span {
     font-size: var(--font-size-s);
     text-transform: uppercase;
     font-weight: 550;
+    &:hover {
+        text-decoration: underline;
+        text-underline-offset: .20em;
+        }
 }
 
 /* MARK: main */
@@ -141,7 +159,9 @@ span {
     padding-top: 1.5em;
     border-radius: .4em;
     transition: transform 0.3s ease;
-    
+    &:hover {
+        transform: scale(.95);
+    }
 }
 
 .form-search-collection {
@@ -158,23 +178,23 @@ span {
 .form-search-collection-ar {
     position: fixed;
     bottom: 1em;
-    right: 55%;
+    right: 50%;
     cursor: pointer;
     input::placeholder {
         font-weight: bold;
         font-size: var(--font-size-xm);
-        padding-left: 1em;
+        padding-right: 1em;
     }
-    
 }
 
 
 
 input[type="search"] {
     -webkit-appearance: none; /* Verwijdert standaard WebKit-stijlen in Safari/Chrome*/
-    appearance: none;         /* Modern alternatief voor appearance reset, voor bredere browserondersteuning */
+    appearance: none; /* Modern alternatief voor appearance reset, voor bredere browserondersteuning */
     height: 3.5em;            
-    width: 150%;
+    width: 180%;
+    margin-left: 2em;
     @media (min-width: 480px) {
         width: 200%;  
         color: var(--color-default);
