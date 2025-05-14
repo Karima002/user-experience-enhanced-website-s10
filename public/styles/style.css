@@ -1,3 +1,47 @@
+/* VIEW TRANSITIONSSSS */
+
+/* Schakelt view-overgangen in voor navigatie binnen hetzelfde domein. bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition */
+/* Normaliter zet je deze code hier alleen, maar in liquid werkt het niet, dus staat het ook in de head  */
+@view-transition {
+    navigation: auto;
+}
+
+@keyframes move-out {
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(-100%);
+        /* Beweegt omhoog uit het zicht */
+    }
+}
+
+@keyframes move-in {
+
+    /* Definieert de 'move-in' animatie voor het nieuwe  element */
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+        /* Beweeg naar de oorspronkelijke positie */
+    }
+}
+
+/* ::view-transition-old(root) {
+    animation: 0.6s ease-in both move-out;
+}
+
+::view-transition-new(root) {
+    animation: 0.6s ease-in both move-in;
+} */
+
+
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -51,10 +95,12 @@ header {
 
 .translated-menu {
     display: none;
+
     @media (min-width: 680px) {
         display: flex;
         flex-direction: column;
     }
+
     &:hover {
         text-decoration: underline;
     }
@@ -62,9 +108,11 @@ header {
 
 .menu {
     display: none;
+
     @media (min-width: 680px) {
         display: block;
     }
+
     &:hover {
         text-decoration: underline;
     }
@@ -74,7 +122,7 @@ span {
     font-family: var(--font-default-bold-arabic);
     font-weight: 550;
     cursor: pointer;
-    
+
 }
 
 .link-menu {
@@ -85,7 +133,8 @@ span {
     text-transform: uppercase;
 }
 
-.link-menu-place, .link-menu-place-nl  {
+.link-menu-place,
+.link-menu-place-nl {
     font-family: var(--font-default-bold);
     font-size: var(--font-size-s);
     font-weight: 550;
@@ -116,6 +165,7 @@ span {
     font-size: var(--font-size-s);
     color: var(--color-default);
     font-weight: 550;
+
     &:hover {
         background-color: var(--color-default);
         color: var(--color-accent);
@@ -129,10 +179,11 @@ span {
     font-size: var(--font-size-s);
     text-transform: uppercase;
     font-weight: 550;
+
     &:hover {
         text-decoration: underline;
         text-underline-offset: .20em;
-        }
+    }
 }
 
 /* MARK: main */
@@ -142,23 +193,29 @@ span {
 }
 
 .art_images {
-    column-count: 2; /* Aantal kolommen */
-    gap: 1.5em; 
-        @media (min-width: 480px) {
-            column-count: 3;   
-        }
-        @media (min-width: 720px) {
-            column-count: 4;   
-        }
+    column-count: 2;
+    /* Aantal kolommen */
+    gap: 1.5em;
+
+    @media (min-width: 480px) {
+        column-count: 3;
+    }
+
+    @media (min-width: 720px) {
+        column-count: 4;
+    }
 }
 
 .art_images img {
-    display: block; /* Verwijdert inline-afstanden */
-    width: 100%; /* Zorg dat de afbeeldingen de kolom vullen */
-    height: auto; 
+    display: block;
+    /* Verwijdert inline-afstanden */
+    width: 100%;
+    /* Zorg dat de afbeeldingen de kolom vullen */
+    height: auto;
     padding-top: 1.5em;
     border-radius: .4em;
     transition: transform 0.3s ease;
+
     &:hover {
         transform: scale(.95);
     }
@@ -169,6 +226,7 @@ span {
     bottom: 1em;
     right: 50%;
     cursor: pointer;
+
     input::placeholder {
         font-size: var(--font-size-xm);
         padding-left: .5em;
@@ -180,6 +238,7 @@ span {
     bottom: 1em;
     right: 50%;
     cursor: pointer;
+
     input::placeholder {
         font-weight: bold;
         font-size: var(--font-size-xm);
@@ -190,13 +249,16 @@ span {
 
 
 input[type="search"] {
-    -webkit-appearance: none; /* Verwijdert standaard WebKit-stijlen in Safari/Chrome*/
-    appearance: none; /* Modern alternatief voor appearance reset, voor bredere browserondersteuning */
-    height: 3.5em;            
+    -webkit-appearance: none;
+    /* Verwijdert standaard WebKit-stijlen in Safari/Chrome*/
+    appearance: none;
+    /* Modern alternatief voor appearance reset, voor bredere browserondersteuning */
+    height: 3.5em;
     width: 180%;
     margin-left: 2em;
+
     @media (min-width: 480px) {
-        width: 200%;  
+        width: 200%;
         color: var(--color-default);
         padding-left: 2em;
         font-size: var(--font-size-xm);
@@ -204,35 +266,3 @@ input[type="search"] {
 }
 
 
-@view-transition { /* Schakelt view-overgangen in voor navigatie binnen hetzelfde domein. bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition */
-    navigation: auto;
-}
-
-@keyframes move-out {
-    from {
-      transform: translateY(0%);
-    }
-  
-    to {
-      transform: translateY(-100%); /* Beweegt omhoog uit het zicht */
-    }
-  }
-  
-  @keyframes move-in { /* Definieert de 'move-in' animatie voor het nieuwe  element */
-    from {
-      transform: translateY(100%);
-    }
-  
-    to {
-      transform: translateY(0%); /* Beweeg naar de oorspronkelijke positie */
-    }
-  }
-  
-  ::view-transition-old(root) { 
-    animation: 0.6s ease-in both move-out; 
-  }
-  
-  ::view-transition-new(root) {
-    animation: 0.6s ease-in both move-in;
-  }
-  

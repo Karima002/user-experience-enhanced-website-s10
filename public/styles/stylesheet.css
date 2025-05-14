@@ -58,7 +58,7 @@ body {
     --font-size-m: 1rem; /*16px, voor de header*/
     --font-size-s: .9rem;
     --font-size-xxs: 0.875rem; /* 14px ÷ 16 = 0.875rem */
-
+    
     /* kleuren */
     --color-default: black;
     --color-accent: white;
@@ -80,6 +80,16 @@ body {
     --letter-spacing: -1.5%;
 }
 
+
+body {
+--font-en-light: "Din Next it pro light";
+  --font-en-regular: "Din Next it pro";
+  --font-en-bold: "Din Next it bold";
+
+  --font-ar-light: "Din Next it light arabic";
+  --font-ar-regular: "Din Next it arabic regular";
+  --font-ar-bold: "Din Next it bold arabic";
+}
 
 li {
     list-style: none;
