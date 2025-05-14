@@ -9,7 +9,7 @@
 
         <ul class="art_images">
             {% for artwork in artwork %}
-                <li>
+                <li style="view-transition-name: image-{{ artwork.id }}">
                 <a href="/en/object/{{ artwork.id }}">
                     <picture>
                         <source
