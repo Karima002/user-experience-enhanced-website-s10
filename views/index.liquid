@@ -20,20 +20,21 @@
                                 https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=avif&width=550 550w  
                             "
                             sizes="
-                            (max-width: 250px) 250px,
-                            (max-width: 350px) 350px,
-                            (max-width: 450px) 450px,
-                            (max-width: 550px) 550px
+                            (max-width: 200x) 200px,
+                            (max-width: 300px) 300px,
+                            (max-width: 400px) 400px,
+                            (max-width: 500px) 500px
                             "
                             type="image/avif" /> <!-- Voor browsers die avif ondersteunen, 250w geeft de afbeeldingsbreedte in pixels, sizes: als het scherm 250px breed is, kiest de browser de 250px-afbeelding-->
                             
                             <!--Fallback voor als de browser geen avif ondersteunt, images worden alleen geladen als ze in de viewport komen met loading=lazy -->
                              <img 
-                                src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=png&width=300" 
+                                src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}?format=png&width=300&height=200"
                                 alt="{{ artwork.title }}"
                                 width="{{ artwork.width }}"
                                 height="{{ artwork.height }}"
-                                loading="lazy">      
+                                loading="lazy"
+                                class="image-qatar">      
                     </picture>
                 </a>
                 </li>
