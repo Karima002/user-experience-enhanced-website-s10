@@ -108,8 +108,8 @@ form input[type="text"] {
         &:hover {
             background-color: var(--color-default);
             color: var(--color-accent);
-            transition-timing-function: ease-in;
-            transition: .5s;
+            transition-timing-function: ease-in; /*de animatie begint langzaam en versnelt naar het einde toe.*/
+            transition: .5s; /*duur van de animatie in 0.5 seconden*/
         }
         @media (min-width: 680px) {
             padding: 1.3em 1.8em 1.3em 1.8em;
